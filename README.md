@@ -98,9 +98,11 @@ Health endpoint: `http://localhost:8080/actuator/health`
 
 ## Development status
 
-The repository currently contains the initial application scaffold and architecture/roadmap documentation. Feature status will be tracked through incremental commits and tests; a capability will not be marked complete until it is demonstrated.
+The initial foundation is in place: Spring Boot application entry point, PostgreSQL development service, Flyway migration, User/Trip/TripMembership entities and repositories, and unit tests for the first domain behavior. GitHub Actions Maven verification is passing.
 
-See [Architecture](docs/architecture.md) and [Implementation Roadmap](docs/roadmap.md).
+Not implemented yet: registration/login and JWT, trip REST APIs, venue catalog, authenticated WebSockets, itinerary concurrency, budget calculations, voting, AI Concierge, recommendations and analytics. A capability will not be marked complete until its behavior is implemented and tested.
+
+See [Architecture](docs/architecture.md), [Data Model](docs/data-model.md) and [Implementation Roadmap](docs/roadmap.md).
 
 ## Engineering decisions
 
