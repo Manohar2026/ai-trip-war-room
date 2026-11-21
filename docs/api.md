@@ -91,7 +91,7 @@ The access token contains:
 - `sub`: normalized user email
 - `userId`: user UUID
 - `platformRole`: `USER` or `ADMIN`
-- `iss`: `ai-trip-war-room`
+- `iss`: `https://ai-trip-war-room.local`
 - `iat` and `exp`: issue and expiry timestamps
 
 Trip-scoped roles (`VIEWER`, `PLANNER`, `LEADER`) are stored in trip memberships and will be checked in the trip/application layer. They are deliberately not treated as global user authorities.
