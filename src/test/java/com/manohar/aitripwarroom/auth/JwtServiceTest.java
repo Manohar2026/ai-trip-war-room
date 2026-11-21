@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class JwtServiceTest {
 
-    private static final Instant NOW = Instant.now();
+    private static final Instant NOW = Instant.now().truncatedTo(java.time.temporal.ChronoUnit.SECONDS);
     private static final SecretKey SECRET_KEY = new SecretKeySpec(
             "01234567890123456789012345678901".getBytes(java.nio.charset.StandardCharsets.UTF_8),
             "HmacSHA256"
