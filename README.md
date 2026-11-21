@@ -74,11 +74,19 @@ cd ai-trip-war-room
 
 ### 2. Configure local environment
 
-```bash
-cp .env.example .env
+Copy the example file:
+
+```powershell
+Copy-Item .env.example .env
 ```
 
-The values in `.env.example` are for local development only. Change them for your machine. Never commit `.env` or production secrets.
+Edit `.env` and replace `DB_PASSWORD` with a local database password. Generate a unique 32-byte JWT signing secret:
+
+```bash
+openssl rand -base64 32
+```
+
+Paste the generated value into `JWT_SECRET_BASE64` in `.env`. The placeholders in `.env.example` are deliberately not usable secrets, so the application will not start until you replace them. Never commit `.env` or production secrets.
 
 ### 3. Start PostgreSQL
 
@@ -100,9 +108,9 @@ Health endpoint: `http://localhost:8080/actuator/health`
 
 The initial foundation is in place: Spring Boot application entry point, PostgreSQL development service, Flyway migration, User/Trip/TripMembership entities and repositories, and unit tests for the first domain behavior. GitHub Actions Maven verification is passing.
 
-Not implemented yet: registration/login and JWT, trip REST APIs, venue catalog, authenticated WebSockets, itinerary concurrency, budget calculations, voting, AI Concierge, recommendations and analytics. A capability will not be marked complete until its behavior is implemented and tested.
+Implemented in the current foundation: user registration and login, signed short-lived JWT access tokens, rotating opaque refresh tokens, logout/revocation, and unit tests for authentication behavior. Not implemented yet: trip REST APIs, venue catalog, authenticated room WebSockets, itinerary concurrency, budget calculations, voting, AI Concierge, recommendations and analytics. A capability will not be marked complete until its behavior is implemented and tested.
 
-See [Architecture](docs/architecture.md), [Data Model](docs/data-model.md) and [Implementation Roadmap](docs/roadmap.md).
+See [Architecture](docs/architecture.md), [Data Model](docs/data-model.md), [API Reference](docs/api.md) and [Implementation Roadmap](docs/roadmap.md).
 
 ## Engineering decisions
 
