@@ -6,7 +6,7 @@ A backend-only collaborative trip-planning system built with Java and Spring Boo
 
 ## Technology
 
-- Java 25
+- Java 21
 - Spring Boot 4.2.0
 - Spring WebFlux and Reactor WebSockets
 - Spring Data JPA / Hibernate
@@ -61,7 +61,7 @@ Each feature package will own its domain model, DTOs, repository, service and co
 
 ### Prerequisites
 
-- JDK 25
+- JDK 21
 - Maven 3.6.3+
 - Docker Engine with Docker Compose
 
