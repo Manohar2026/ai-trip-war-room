@@ -1,0 +1,32 @@
+# Maven
+target/
+!.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.properties
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+.metadata/
+.factorypath
+
+# Java
+*.class
+*.log
+hs_err_pid*
+replay_pid*
+
+# Operating systems
+.DS_Store
+Thumbs.db
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
