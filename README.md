@@ -88,15 +88,11 @@ docker compose up -d postgres
 
 ### 4. Run the application
 
-```bash
-./mvnw spring-boot:run
-```
-
-A Maven Wrapper will be added in the first local build/setup pass. Until then, use:
-
-```bash
+\`\`\`bash
 mvn spring-boot:run
-```
+\`\`\`
+
+Maven Wrapper scripts are not included yet; until they are added, use the installed Maven CLI.
 
 Health endpoint: `http://localhost:8080/actuator/health`
 
