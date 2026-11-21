@@ -31,6 +31,12 @@ management:
       probes:
         enabled: true
 
+security:
+  jwt:
+    secret-base64: ${JWT_SECRET_BASE64}
+    access-token-ttl: PT15M
+    refresh-token-ttl: P7D
+
 logging:
   level:
     com.manohar.aitripwarroom: INFO
