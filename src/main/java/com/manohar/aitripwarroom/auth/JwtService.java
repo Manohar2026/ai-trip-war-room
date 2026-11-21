@@ -40,7 +40,7 @@ public class JwtService {
         Instant expiresAt = issuedAt.plus(accessTokenTtl);
 
         JwtClaimsSet claims = JwtClaimsSet.builder()
-                .issuer("ai-trip-war-room")
+                .issuer("https://ai-trip-war-room.local")
                 .issuedAt(issuedAt)
                 .expiresAt(expiresAt)
                 .subject(user.getEmail())
