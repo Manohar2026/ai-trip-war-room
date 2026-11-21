@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class JwtServiceTest {
 
-    private static final Instant NOW = Instant.parse("2026-11-21T08:00:00Z");
+    private static final Instant NOW = Instant.now();
     private static final SecretKey SECRET_KEY = new SecretKeySpec(
             "01234567890123456789012345678901".getBytes(java.nio.charset.StandardCharsets.UTF_8),
             "HmacSHA256"
@@ -53,7 +53,7 @@ class JwtServiceTest {
         assertEquals("manohar@example.com", decoded.getSubject());
         assertEquals(userId.toString(), decoded.getClaimAsString("userId"));
         assertEquals("USER", decoded.getClaimAsString("platformRole"));
-        assertEquals("ai-trip-war-room", decoded.getIssuer().toString());
+        assertEquals("https://ai-trip-war-room.local", decoded.getIssuer().toString());
         assertEquals(NOW, decoded.getIssuedAt());
         assertEquals(NOW.plus(Duration.ofMinutes(15)), decoded.getExpiresAt());
         assertEquals(900, issued.expiresInSeconds());
