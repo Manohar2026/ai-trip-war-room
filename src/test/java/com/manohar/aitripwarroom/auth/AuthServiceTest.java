@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.util.ReflectionTestUtils;
+import org.mockito.ArgumentCaptor;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.nio.charset.StandardCharsets;
@@ -29,6 +30,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -151,13 +153,13 @@ class AuthServiceTest {
 
         assertNotEquals(rawRefreshToken, response.refreshToken());
         assertEquals(NOW, existing.getRevokedAt());
-        verify(refreshTokenRepository).save(existing);
-        verify(refreshTokenRepository).save(
-                org.mockito.ArgumentMatchers.argThat(token ->
-                        token.getFamilyId().equals(familyId)
-                                && !token.getTokenHash().equals(rawRefreshToken)
-                )
-        );
+        ArgumentCaptor<RefreshToken> savedTokens = ArgumentCaptor.forClass(RefreshToken.class);
+        verify(refreshTokenRepository, times(2)).save(savedTokens.capture());
+
+        assertEquals(existing, savedTokens.getAllValues().get(0));
+        RefreshToken rotatedToken = savedTokens.getAllValues().get(1);
+        assertEquals(familyId, rotatedToken.getFamilyId());
+        assertNotEquals(sha256(rawRefreshToken), rotatedToken.getTokenHash());
     }
 
     @Test
